@@ -49,8 +49,7 @@ public class SaleDao {
 	
 	//timesale 테이블에서 현재 시간상 유효기간에 속하는 상품의 데이터를 조회하고, Map으로 반환합니다
 	public HashMap<Integer, SaleVo> selectValidMap(){
-		List<SaleVo> list = new ArrayList<>();
-		list = sqlSession.selectList("sale.selectValid", getNow());
+		List<SaleVo> list = sqlSession.selectList("sale.selectValid", getNow());
 		HashMap<Integer, SaleVo> saleMap = new HashMap<>();
 		for(SaleVo sv : list) {
 			saleMap.put(sv.getProduct_no(), sv);
