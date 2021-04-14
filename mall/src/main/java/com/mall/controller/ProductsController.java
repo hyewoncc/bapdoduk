@@ -47,9 +47,9 @@ public class ProductsController {
 		return mav;
 	}
 
+	// 상세 상품 보기
 	@RequestMapping("/detailProducts.do")
 	public ModelAndView detail(int no,HttpSession session) {
-		
 		
 		String mem_id = (String)session.getAttribute("login");
 		
@@ -57,6 +57,12 @@ public class ProductsController {
 		mav.addObject("reviews", reviewDao.selectProductReview(no));
 		mav.addObject("p", dao.selectOne(no));
 		mav.addObject("mem_id",mem_id);
+		
+		// 해당 상품이 세일중이라면 세일 정보를 같이 넘긴다
+		if(saleDao.checkValid(saleDao.selectOne(no))) {
+			mav.addObject("sale", saleDao.selectOne(no));
+		}
+		
 		return mav;
 	}
 

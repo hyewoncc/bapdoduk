@@ -1,5 +1,6 @@
 package com.mall.dao.sale;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,6 +88,20 @@ public class SaleDao {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = sdf.format(date);
 		return now;
+	}
+	
+	//특정 할인 데이터가 현재시간 기준 유효한지 확인
+	public boolean checkValid(SaleVo sv) {
+		
+		//현재 시간과 할인 데이터의 시간 문자열을 비교해 해당될 경우 true 반환
+		int startCheck = getNow().compareTo(sv.getTimesale_start());
+		int endCheck = sv.getTimesale_end().compareTo(getNow());
+		
+		if(startCheck == 1 && endCheck == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void commit() {

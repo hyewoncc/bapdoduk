@@ -70,6 +70,12 @@
 						</select>&nbsp;개&nbsp;
 					</div>
 					<div class="product-total-price">
+						<c:if test="${sale != null }">
+							<span id="sale_tag"></span>
+							<span id="origin_price">${p.product_price } 원</span><br>
+							<input type="hidden" id="sale_price" value="${sale.timesale_saleprice }">						
+							<c:set var="total_price" value="${sale.timesale_saleprice }"/>
+						</c:if>
 						<span class="price-span">총 가격</span>
 						<span id="total_price"><fmt:formatNumber value="${total_price }" pattern="#,###"/></span>
 						<span class="price-span">원</span>
@@ -170,10 +176,14 @@
 	
 	// 상품 수량 선택 이벤트처리
 	function getProductQTY(){
-		var qty = $("#product_qty option:selected").val();
-		var total_price = $("#product_price").val();
+		let qty = $("#product_qty option:selected").val();
+		let total_price = $("#product_price").val();
+		
+		if($("#origin_price").length){
+			total_price = $("#sale_price").val();			
+		}
+		
 		total_price = total_price*qty;
-		//alert(total_price);
 		total_price = priceFormat(total_price);
 		
 		document.getElementById("total_price").innerHTML = total_price;
