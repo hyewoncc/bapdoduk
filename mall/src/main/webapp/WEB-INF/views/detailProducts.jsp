@@ -55,7 +55,7 @@
 					</ul>
 				</div>
 				
-				<form class="purchase-form" name="form-cart" method="post" action="/insert.do">
+				<form class="purchase-form" name="form-cart" method="post" action="/addCart">
 					<input type="hidden" name="product_no" value="${p.product_no }">
 					<input type="hidden" name="product_price" id="product_price" value="${p.product_price }">
 					<input type="hidden" name="product_title" value="${p.product_title }">

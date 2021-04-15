@@ -26,7 +26,7 @@ public class CartController {
 	private final CartDao dao;
 
 	// 장바구니에 상품 담기
-	@RequestMapping("/insert.do")
+	@RequestMapping("/addCart")
 	public String insert(@ModelAttribute CartVo cv, HttpSession session) {
 		String mem_id = (String) session.getAttribute("login");
 		cv.setMem_id(mem_id);

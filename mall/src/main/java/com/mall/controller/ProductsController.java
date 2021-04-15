@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.review.ReviewDao;
 import com.mall.dao.sale.SaleDao;
+import com.mall.vo.sale.SaleVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -59,8 +60,9 @@ public class ProductsController {
 		mav.addObject("mem_id",mem_id);
 		
 		// 해당 상품이 세일중이라면 세일 정보를 같이 넘긴다
-		if(saleDao.checkValid(saleDao.selectOne(no))) {
-			mav.addObject("sale", saleDao.selectOne(no));
+		SaleVo sv = saleDao.selectOne(no);
+		if (sv != null && saleDao.checkValid(sv)) {
+			mav.addObject("sale", saleDao.selectOne(no));	
 		}
 		
 		return mav;
