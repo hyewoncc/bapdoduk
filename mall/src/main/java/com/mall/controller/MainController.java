@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
-import com.mall.util.AdminUtil;
+import com.mall.vo.cart.CartVo;
 import com.mall.vo.event.EventVo;
 import com.mall.vo.product.ProductVo;
 
@@ -29,12 +30,17 @@ public class MainController {
 	private final EventDao eventDao;
 
 	@RequestMapping("/")
-	public ModelAndView mainpage(HttpServletRequest request) {
+	public ModelAndView mainpage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
-		//관리자 페이지에서 넘어왔자면 세션 초기화
-		if(request.getSession().getAttribute("admin") != null) {
-			request.getSession().invalidate();
+
+		//관리자 페이지에서 넘어왔다면 세션 초기화
+		if(session.getAttribute("admin") != null) {
+			session.invalidate();
+		}
+
+		//비회원 장바구니 관리를 위한 세션 추가
+		if(session.getAttribute("cart") == null) {
+			session.setAttribute("cart", new ArrayList<CartVo>());
 		}
 		
 		mav.addObject("eventList", eventDao.selectValid());

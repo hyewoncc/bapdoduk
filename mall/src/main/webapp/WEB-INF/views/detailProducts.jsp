@@ -59,6 +59,7 @@
 					<input type="hidden" name="product_no" value="${p.product_no }">
 					<input type="hidden" name="product_price" id="product_price" value="${p.product_price }">
 					<input type="hidden" name="product_title" value="${p.product_title }">
+					<input type="hidden" name="product_main_img" value="${p.product_main_img }">
 					
 					<div class="product-select-amount">
 						<span class="qty-span">수량 선택</span>		
@@ -166,13 +167,14 @@
 		});
 	*/
 	
+	/*
 	$("#input_cart").on('click',function(){
 			if($("#mem_id").val() == 0){
 					alert("로그인 후 이용가능합니다.");	
 					location.href="/login/userLogin";			
 			}
 	});
-	
+	*/
 	
 	// 상품 수량 선택 이벤트처리
 	function getProductQTY(){
