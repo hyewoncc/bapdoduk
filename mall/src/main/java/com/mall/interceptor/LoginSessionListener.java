@@ -21,12 +21,9 @@ public class LoginSessionListener extends HandlerInterceptorAdapter implements H
             throws Exception {
         
 		if(request.getSession().getAttribute("login") != null){
-			System.out.println("a");
 			return true;
 		}else {
-			System.out.println("b");
-			System.out.println(request.getSession().getAttribute("login"));
-			response.sendRedirect("/");
+			response.sendRedirect("/login/userLogin");
 			return false;
 		}
     }
