@@ -2,7 +2,9 @@ package com.mall.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mall.dao.cart.CartDao;
 import com.mall.dao.user.UserDAO;
 import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
+import com.mall.util.CartUtil;
+import com.mall.vo.cart.CartVo;
 import com.mall.vo.mypage.IdInquiryVo;
 import com.mall.vo.mypage.PwdInquiryVo;
 import com.mall.vo.mypage.PwdPhoneAuthVo;
@@ -36,6 +41,8 @@ public class LoginController {
 	
 	private final UserDAO dao;  // 회원 정보를 받기 위한 DI
 	private final JavaMailSender javaMailSender; // 문자를 보내기 위한 DI
+	private final CartDao cartdao;
+	private final CartUtil cartutil;
 	
 	// login view 페이지 이동
 	@GetMapping("userLogin")
@@ -81,6 +88,13 @@ public class LoginController {
 		if(mem_id != null) {
 			session.setAttribute("login", mem_id);
 		}
+		
+		//비로그인 때 장바구니에 담은 상품이 있다면 DB로 정보를 옮겨준다
+		if(((ArrayList)session.getAttribute("cart")).size() != 0) {
+			List<CartVo> cartList = (ArrayList)session.getAttribute("cart");
+			cartutil.moveCartToDb(cartList, cartdao, mem_id, session);
+		}
+		
 		// 메인페이지로 리다이렉트
 		return "redirect:/";
 	}//loginSubmit

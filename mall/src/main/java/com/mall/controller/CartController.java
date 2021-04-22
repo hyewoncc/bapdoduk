@@ -122,18 +122,27 @@ public class CartController {
 	@RequestMapping(value = "/selectDelete", method = RequestMethod.POST)
 	public String selectDelete(HttpSession session,
 	     @RequestParam(value = "checkBox[]") List<String> checkArr, CartVo cart) throws Exception {
-			String mem_id = (String) session.getAttribute("login");
-			int cart_no = 0;
-			 
-			if(mem_id != null) {
-				cart.setMem_id(mem_id);
-				  
-				for(String i : checkArr) {   
-					cart_no = Integer.parseInt(i);
-					cart.setCart_no(cart_no);
-					dao.selectDeleteCart(cart);
-				}   
-			}  
+			
+			//회원일 시 DB 테이블 값 수정
+			//비회원일 시 세션 수정
+			if(session.getAttribute("login") != null) {
+				String mem_id = (String) session.getAttribute("login");
+				int cart_no = 0;
+				
+				if(mem_id != null) {
+					cart.setMem_id(mem_id);
+					
+					for(String i : checkArr) {   
+						cart_no = Integer.parseInt(i);
+						cart.setCart_no(cart_no);
+						dao.selectDeleteCart(cart);
+					}   
+				}  
+			}else {
+				for(String i : checkArr) {
+					int product_no = Integer.parseInt(i);
+				}
+			}
 		return "redirect:/listCart.do";
 		}
 	
