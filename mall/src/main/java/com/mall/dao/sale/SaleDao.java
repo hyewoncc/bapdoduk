@@ -97,7 +97,7 @@ public class SaleDao {
 		int startCheck = getNow().compareTo(sv.getTimesale_start());
 		int endCheck = sv.getTimesale_end().compareTo(getNow());
 		
-		if(startCheck == 1 && endCheck == 1) {
+		if(startCheck > 0 && endCheck > 0) {
 			return true;
 		} else {
 			return false;
