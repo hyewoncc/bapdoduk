@@ -33,6 +33,12 @@ public class CartController {
 	public String insert(@ModelAttribute CartVo cv, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		
+		//세일중이라면 세일가로 장바구니 정보를 수정
+		if(request.getParameter("sale_price") != null) {
+			cv.setProduct_price(Integer.parseInt(request.getParameter("sale_price")));
+		}
+		
 		//로그인 상태 : DB에 장바구니 정보 저장
 		//비로그인 상태 : 세션에 장바구니 정보 저장  
 		if(session.getAttribute("login") != null) {

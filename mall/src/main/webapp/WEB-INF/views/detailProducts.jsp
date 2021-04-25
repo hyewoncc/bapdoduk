@@ -74,7 +74,7 @@
 						<c:if test="${sale != null }">
 							<span id="sale_tag"></span>
 							<span id="origin_price">${p.product_price } 원</span><br>
-							<input type="hidden" id="sale_price" value="${sale.timesale_saleprice }">						
+							<input type="hidden" id="sale_price" name="sale_price" value="${sale.timesale_saleprice }">						
 							<c:set var="total_price" value="${sale.timesale_saleprice }"/>
 						</c:if>
 						<span class="price-span">총 가격</span>
