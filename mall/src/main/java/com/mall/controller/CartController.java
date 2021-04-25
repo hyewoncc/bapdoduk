@@ -57,6 +57,7 @@ public class CartController {
 		}else {
 			//선택 정보로 CartVo 객체를 만들어서 세션 리스트에 추가
 			List<CartVo> cartList = (ArrayList)session.getAttribute("cart");
+			cv.setCart_no(cartList.size() + 1);
 			cartList.add(cv);
 			
 			session.setAttribute("cart", cartList);
@@ -119,8 +120,22 @@ public class CartController {
 
 	// 장바구니에 담긴 상품 삭제
 	@RequestMapping("/delete.do")
-	public String delete(@RequestParam int cart_no) {
-		dao.deleteCart(cart_no);
+	public String delete(@RequestParam int cart_no, HttpSession session) {
+		
+		//회원일 시 DB 테이블 값 수정
+		//비회원일 시 세션 수정
+		if(session.getAttribute("login") != null) {
+			dao.deleteCart(cart_no);
+		}else {			
+			List<CartVo> list = (ArrayList)session.getAttribute("cart");
+			for(CartVo cv : list) {
+				if(cv.getCart_no() == cart_no) {
+					list.remove(cv);
+					break;
+				}
+			}
+		}
+		
 		return "redirect:/listCart.do";
 	}
 	
