@@ -104,9 +104,13 @@ public class CartController {
 
 	// 장바구니 수량 변경
 	@RequestMapping("/update.do")
-	public String update(@RequestParam int[] product_qty, 
-		@RequestParam int[] product_no, HttpSession session) {
-			String mem_id = (String) session.getAttribute("login");
+	public String update(@RequestParam int[] product_qty, @RequestParam int[] product_no, HttpSession session) {
+		
+		//회원일 시 DB 테이블 값 수정
+		//비회원일 시 세션 수정
+		if(session.getAttribute("login") != null) {
+			
+			String mem_id = (String)session.getAttribute("login");
 			// 레코드 갯수만큼 반복문 실행
 			for (int i = 0; i < product_no.length; i++) {
 				CartVo cv = new CartVo();
@@ -114,7 +118,19 @@ public class CartController {
 				cv.setProduct_qty(product_qty[i]);
 				cv.setProduct_no(product_no[i]);
 				dao.modifyCart(cv);
+			}
+		}else {
+			List<CartVo> list = (ArrayList)session.getAttribute("cart");
+			for(int i = 0; i < product_no.length; i++) {
+				for(CartVo cv : list) {
+					if(cv.getProduct_no() == product_no[i]) {
+						cv.setProduct_qty(product_qty[i]);
+					}
+				}
+			}
 		}
+		
+		
 		return "redirect:/listCart.do";
 	}
 
