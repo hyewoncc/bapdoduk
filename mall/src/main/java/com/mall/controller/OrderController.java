@@ -37,7 +37,6 @@ public class OrderController {
 		// 세션
 		String mem_id = (String) session.getAttribute("login");
 		
-		System.out.println("order"+mem_id);
 		// 고객이 담은 장바구니 상품 정보 (상품번호/제목/서브제목/이미지/고객 장바구니 상품 총 가격/고객 장바구니 상품 수량)
 		List<OrderProdListVo> cVoList = dao.findCartList(mem_id);
 		

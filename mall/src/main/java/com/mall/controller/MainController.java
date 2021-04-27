@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
+import com.mall.util.MainUtil;
 import com.mall.vo.cart.CartVo;
 import com.mall.vo.event.EventVo;
 import com.mall.vo.product.ProductVo;
@@ -28,6 +29,7 @@ public class MainController {
 	private final ProductDao productDao;
 	private final SaleDao saleDao;
 	private final EventDao eventDao;
+	private final MainUtil mainUtil;
 
 	@RequestMapping("/")
 	public ModelAndView mainpage(HttpSession session) {
@@ -53,6 +55,9 @@ public class MainController {
 	@RequestMapping("/search")
 	public ModelAndView searchPage(HttpServletRequest request) {
 		String keyword = request.getParameter("keyword");
+		
+		//검색어 앞뒤의 공백 제거
+		keyword = mainUtil.removeBlank(keyword);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword", keyword);
