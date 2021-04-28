@@ -19,11 +19,16 @@ public class LoginSessionListener extends HandlerInterceptorAdapter implements H
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        
+          	
 		if(request.getSession().getAttribute("login") != null){
 			return true;
 		}else {
 			response.sendRedirect("/login/userLogin");
+			String url = request.getHeader("REFERER");
+			url = url.substring(url.lastIndexOf("/"), url.length());
+			if(url.equals("/listCart.do")) {
+				request.getSession().setAttribute("redirect", "/payment/order");
+			}
 			return false;
 		}
     }

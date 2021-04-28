@@ -64,6 +64,15 @@ public class CartDao {
 		}
 	}	
 	
+	
+	// 특정 아이디 장바구니에 담긴 모든 상품 삭제
+	public void deleteCartAll(String id) {
+		int re = sqlSession.delete("cart.deleteAll", id);
+		if (re == 1) {
+			sqlSession.commit();
+		}
+	}
+	
 	public void selectDeleteCart(CartVo cv) {
 		int re = sqlSession.delete("cart.selectDelete", cv);
 		if (re == 1) {

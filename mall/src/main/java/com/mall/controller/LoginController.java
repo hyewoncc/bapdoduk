@@ -53,6 +53,7 @@ public class LoginController {
 	// 로그인 버튼 클릭시 post 요청에 의한 Process
 	@PostMapping("userLogin")
 	public String loginSubmit(Model model,HttpSession session,HttpServletRequest request,HttpServletResponse response,String mem_id, String mem_pwd) throws IOException {
+		
 		//아이디 또는 비밀번호가 null이거나 공백인 경우
 		if("".equals(mem_id) || mem_id == null || "".equals(mem_pwd)) {
             response.setContentType("text/html;charset=UTF-8");
@@ -80,8 +81,8 @@ public class LoginController {
 		
 		// 만약 세션값이 존재 한다면 
 		if(session.getAttribute("login") != null) { 
-		// 기존 세션 값을제거해준다. 
-		session.removeAttribute("login"); 
+			// 기존 세션 값을제거해준다. 
+			session.removeAttribute("login"); 
 		}//end if
 		  
 		//만약 id가 비어있지않으면 
@@ -91,10 +92,15 @@ public class LoginController {
 		
 		//비로그인 때 장바구니에 담은 상품이 있다면 DB로 정보를 옮겨준다
 		if(((ArrayList)session.getAttribute("cart")).size() != 0) {
+			cartdao.deleteCartAll(mem_id);
 			List<CartVo> cartList = (ArrayList)session.getAttribute("cart");
 			cartutil.moveCartToDb(cartList, cartdao, mem_id, session);
 		}
 		
+		if(session.getAttribute("redirect") != null) {
+			String url = (String)session.getAttribute("redirect");
+			return "redirect:" + url;
+		}
 		// 메인페이지로 리다이렉트
 		return "redirect:/";
 	}//loginSubmit

@@ -42,6 +42,12 @@
 		where cart_no = #{cart_no}
 	</delete>
 	
+	<!-- 해당 아이디의 모든 장바구니 삭제 -->
+	<delete id="deleteAll">
+		delete from TB_CART
+		where mem_id = #{id}
+	</delete>
+	
 	<!-- 장바구니 선택상품 삭제-->
 	<delete id="selectDelete">
 		delete from TB_CART

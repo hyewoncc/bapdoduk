@@ -44,8 +44,6 @@ public class UserDAO {
 		map.put("mem_id", id);
 		map.put("mem_pwd", password);
 		
-		System.out.println(map);
-
 		int validPwd = sqlSession.selectOne("userMapper.findpwd", map);
 		
 		return validPwd;
