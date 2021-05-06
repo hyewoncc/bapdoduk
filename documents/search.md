@@ -1,8 +1,8 @@
 ### 검색 기능
 
 상품명을 검색하는 기능을 만들었습니다
+![search](https://user-images.githubusercontent.com/80666066/117339991-5c078680-aedb-11eb-8426-b5def6591d10.gif)
 
-![search00](https://user-images.githubusercontent.com/80666066/116546768-f93b4b80-a92c-11eb-839b-01b1e7ac991f.PNG)  
 검색어를 입력할 시 검색어가 상품명에 포함 된 제품들과 결과 건수를 보여줍니다  
 컨트롤러에서 검색어를 파라미터로 받아 해당 코드를 거쳐 페이지로 반환하게 만들었습니다  
 
@@ -10,10 +10,10 @@
 //상품명 검색 결과를 반환하고 검색 결과 페이지로 넘김
 @RequestMapping("/search")
 public ModelAndView searchPage(HttpServletRequest request) {
-  String keyword = request.getParameter("keyword");
-  
-  //검색어 앞뒤의 공백 제거
-  keyword = mainUtil.removeBlank(keyword);
+	String keyword = request.getParameter("keyword");
+	
+	//검색어 앞뒤의 공백 제거
+	keyword = mainUtil.removeBlank(keyword);
 		
 	ModelAndView mav = new ModelAndView();
 	mav.addObject("keyword", keyword);
@@ -36,11 +36,11 @@ public ModelAndView searchPage(HttpServletRequest request) {
 ```java
 //특정 문구가 이름에 포함된 상품 목록을 반환합니다
 public List<ProductVo> searchByName(String keyword){
-  keyword = ("%" + keyword + "%");
+	keyword = ("%" + keyword + "%");
 	List<ProductVo> list = new ArrayList<>();	
 	list = sqlSession.selectList("products.searchByName", keyword);				
 	
-  return list;
+	return list;
 }
 ```  
 
