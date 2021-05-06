@@ -1,4 +1,8 @@
 ### 이벤트게시판
+
+![event](https://user-images.githubusercontent.com/80666066/117336443-2b255280-aed7-11eb-937e-d4216f1c372f.gif)
+
+
 이벤트 게시판 기능을 구현했습니다.
 이벤트 정보 테이블은 아래와 같습니다.
 
