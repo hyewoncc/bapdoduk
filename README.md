@@ -17,16 +17,18 @@
 항목을 클릭하면 상세 페이지로 이동합니다.
 
 - [특정 기간동안 상품을 할인판매 하는 **타임세일**](./documents/timesale.md)
-- [상품들을 묶어 판매하는 **세트판매**]()
+- [상품들을 묶어 판매하는 **세트판매**](./documents/sets.md)
 - [진행중인 이벤트를 보여주는 **이벤트 게시판**](./documents/events.md)
-- 상품명으로 **상품검색** 
-- **카테고리**별 상품 목록 보여주기  
+- [상품명으로 **상품검색**](./documents/search.md)
+- [**카테고리**별 상품 목록 보여주기](./documents/category.md)  
 
   
 관리자 페이지에서 다음을 맡았습니다
 
-- 상품 정보, 세일 정보, 세트 정보의 CRUD
-- 이벤트 게시판의 CRUD 
+- [상품 정보 등록/수정/삭제 **관리하기**](./documents/admin_product.md)
+- [세일 정보 등록/수정/삭제 **관리하기**](./documents/admin_sale.md)
+- [세트 정보 등록/수정/삭제 **관리하기**](./documents/admin_set.md)
+- [이벤트 게시글 등록/수정/삭제 **관리하기**](./documents/admin_event.md)  
 <br/>
 
 ### 프로젝트를 하면서
