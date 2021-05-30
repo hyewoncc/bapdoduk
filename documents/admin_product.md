@@ -6,7 +6,7 @@
 - 동일 url에서 GET/POST 접근을 컨트롤러에서 구분해 처리하기  
 - 서버에 이미지 파일 업로드  
 - 쿼리스트링을 통한 값 전달
-- 자바스크립트로 서버단에서 유효성 검증하기 
+- 자바스크립트로 화면단에서 유효성 검증하기 
 - ajax 통신 
 - jsp의 c태그를 이용한 html 동적 생성  
 
@@ -253,6 +253,7 @@ public String deleteProduct(int no, HttpServletRequest request) {
 ```
 </br>
 삭제를 위해 작성한 쿼리문입니다  
+
 ```xml
 <delete id="delete">
   delete from TB_PRODUCT
