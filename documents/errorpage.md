@@ -29,9 +29,9 @@ public class ErrorPageController implements ErrorController{
   }
   
   @Override
-	public String getErrorPath() {
-		return "/error";
-	}
+  public String getErrorPath(){
+  	return "/error";
+}
 }
 ```  
 ErrorController 인터페이스를 구현한 ErrorPageController 클래스를 작성했습니다  
