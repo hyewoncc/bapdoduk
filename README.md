@@ -1,6 +1,8 @@
 ## 반찬 쇼핑몰 '밥도둑'   
 쌍용교육센터 Java 풀스택 개발자 코스에서 진행했던 최종 프로젝트입니다  
 
+![main](https://user-images.githubusercontent.com/80666066/120124484-92d96f80-c1ef-11eb-9212-bdbc82f02055.PNG)
+
 
 
 ### 기술 스택
@@ -17,7 +19,7 @@
 항목을 클릭하면 상세 페이지로 이동합니다.
 
 - [특정 기간동안 상품을 할인판매 하는 **타임세일**](./documents/timesale.md)
-- [상품들을 묶어 판매하는 **세트판매**](./documents/sets.md)
+- [상품명 기반의 **상품 검색**](./documents/search.md)
 - [진행중인 이벤트를 보여주는 **이벤트 게시판**](./documents/events.md)
 - [**카테고리**별 상품 목록 보여주기](./documents/category.md)  
 - [간단한 **에러 페이지** 처리](./documents/errorpage.md)  
