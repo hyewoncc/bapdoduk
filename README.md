@@ -22,6 +22,7 @@
 - [상품명 기반의 **상품 검색**](./documents/search.md)
 - [진행중인 이벤트를 보여주는 **이벤트 게시판**](./documents/events.md)
 - [**카테고리**별 상품 목록 보여주기](./documents/category.md)  
+- [세션을 이용한 **비회원 장바구니** 기능](./documents/nonelogin_cart.md)
 - [간단한 **에러 페이지** 처리](./documents/errorpage.md)  
   
 관리자 페이지에서 다음을 맡았습니다
