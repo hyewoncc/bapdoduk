@@ -7,6 +7,8 @@
 
 ### 기술 스택
 
+![image](https://user-images.githubusercontent.com/80666066/120291588-6ceec080-c2fe-11eb-89a0-02d8cd5a38ca.png)
+
 - Java, SpringBoot
 - Oracle Database, Mybatis
 - JSP, JavaScript, HTML, CSS 
